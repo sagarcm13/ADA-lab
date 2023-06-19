@@ -1,5 +1,5 @@
 #include<stdio.h>
-int graph[20][20],c=01;
+int graph[20][20],c=0;
 void DFS(int i,int vis[],int n)
 {
     int j;
@@ -9,10 +9,10 @@ void DFS(int i,int vis[],int n)
     {
         if(graph[i][j]==1 && vis[j]==0)
         {
-            c++;
+        
             DFS(j,vis,n);
         }
-    }
+    }c++;
 }
 void main()
 {
