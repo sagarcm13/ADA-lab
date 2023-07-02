@@ -29,10 +29,13 @@ void main()
                 printf("%d ", (k + 1));
                 visited[k] = 1;
             }
-            for (i = 0; i < n; i++)
+            if(indeg[k]>0)
             {
-                if (a[i][k] == 1)
-                    indeg[k]--;
+                for (i = 0; i < n; i++)
+                {
+                    if (a[i][k] == 1)
+                        indeg[k]--;
+                }
             }
         }
         count++;
