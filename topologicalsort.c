@@ -1,7 +1,7 @@
 #include <stdio.h>
 void main()
 {
-    int i, j, k, n, a[10][10], indeg[10], flag[10], count = 0;
+    int i, j, k, n, a[10][10], indeg[10], visited[10], count = 0;
     printf("Enter the no of vertices:\n");
     scanf("%d", &n);
     printf("Enter the adjacency matrix:\n");
@@ -14,7 +14,7 @@ void main()
     for (i = 0; i < n; i++)
     {
         indeg[i] = 0;
-        flag[i] = 0;
+        visited[i] = 0;
     }
     for (i = 0; i < n; i++)
         for (j = 0; j < n; j++)
@@ -24,10 +24,10 @@ void main()
     {
         for (k = 0; k < n; k++)
         {
-            if ((indeg[k] == 0) && (flag[k] == 0))
+            if ((indeg[k] == 0) && (visited[k] == 0))
             {
                 printf("%d ", (k + 1));
-                flag[k] = 1;
+                visited[k] = 1;
             }
             for (i = 0; i < n; i++)
             {
