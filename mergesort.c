@@ -1,60 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-void merge(int a[], int l, int mid, int h)
+void merge(int a[],int b[], int l, int mid, int h)
 {
     
-    
-    int i, j, k;
-    int n1 = mid - l + 1;
-    int n2 = h - mid;
- 
-    int L[n1], R[n2];
-
-    for (i = 0; i < n1; i++)
-        L[i] = a[l + i];
-    for (j = 0; j < n2; j++)
-        R[j] = a[mid + 1 + j];
- 
-    i = 0;
- 
-    j=0;
-    k = l;
-    while (i < n1 && j < n2)
+    int i=l, j=mid+1, k=l;
+    while (i <= mid && j <= h)
     {
-        if (L[i] <= R[j])
+        if (a[i] <= a[j])
         {
-            a[k] = L[i];
+            b[k] = a[i];
             i++;
         }
         else
         {
-            a[k] = R[j];
+            b[k] = a[j];
             j++;
         }
         k++;
     }
-    while (i < n1) {
-        a[k] = L[i];
+    while (i <=mid) {
+        b[k] = a[i];
         i++;
         k++;
     }
-    while (j < n2)
+    while (j <=h)
     {
-        a[k] = R[j];
+        b[k] = a[j];
         j++;
         k++;
     }
 }
 
-void mergesort(int a[], int l, int h)
+void mergesort(int a[],int b[], int l, int h)
 {
     if (l < h)
     {
         int mid = l + (h - l) / 2;
-        mergesort(a, l, mid);
-        mergesort(a, mid + 1, h);
-        merge(a, l, mid, h);
+        mergesort(a,b, l, mid);
+        mergesort(a,b, mid + 1, h);
+        merge(a,b, l, mid, h);
     }
 }
 
@@ -65,17 +50,17 @@ void main()
     scanf("%ld",&n);
     clock_t st,end;
     int a[n];
+    int b[n];   
     for (int i = 0; i < n; i++)
     {
         a[i]=rand()%1000;
     }
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ",a[i]);
-    }
-        
     st=clock();
     mergesort(a, 0, n-1);
     end=clock();
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ",b[i]);
+    }
     printf("Time taken to %ld elements %lf ",n,(((double)(end-st))/CLOCKS_PER_SEC));
 }
