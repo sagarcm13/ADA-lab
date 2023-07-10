@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 void merge(int a[], int l, int mid, int h)
 {
@@ -66,9 +67,13 @@ void main()
     int a[n];
     for (int i = 0; i < n; i++)
     {
-        a[i]=n-i;
+        a[i]=rand()%1000;
     }
-    
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ",a[i]);
+    }
+        
     st=clock();
     mergesort(a, 0, n-1);
     end=clock();
